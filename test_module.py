@@ -3,11 +3,12 @@ import port_scanner
 
 print("***Tests***")
 class UnitTests(unittest.TestCase):
-    #def test_port_scanner_ip(self):
-         #ports = port_scanner.get_open_ports("209.216.230.240", [440, 445], False)
-         #actual = ports
-         #expected = [443]
-         #self.assertEqual(actual, expected, 'Expected scanning ports of IP address to return [443].')
+    # changed test ip to 137.74.187.104 because 209.216.230.240 always times out 
+    def test_port_scanner_ip(self):
+         ports = port_scanner.get_open_ports("137.74.187.104", [440, 445], False)
+         actual = ports
+         expected = [443]
+         self.assertEqual(actual, expected, 'Expected scanning ports of IP address to return [443].')
 
     def test_port_scanner_url(self):
         ports = port_scanner.get_open_ports("www.stackoverflow.com", [79, 82], False)
@@ -39,17 +40,17 @@ class UnitTests(unittest.TestCase):
          expected = "Open ports for scanme.nmap.org (45.33.32.156)\nPORT     SERVICE\n22       ssh\n80       http"
          self.assertEqual(actual, expected, "Expected 'Open ports for scanme.nmap.org (45.33.32.156)\nPORT     SERVICE\n22       ssh\n80       http'")
 
-    #def test_port_scanner_invalid_hostname(self):
-        #err = port_scanner.get_open_ports("scanme.nmap", [22, 42], False)
-        #actual = err
-        #expected = "Error: Invalid hostname"
-        #self.assertEqual(actual, expected, "Expected 'Error: Invalid hostname'")
+    def test_port_scanner_invalid_hostname(self):
+        err = port_scanner.get_open_ports("scanme.nmap", [22, 42], False)
+        actual = err
+        expected = "Error: Invalid hostname"
+        self.assertEqual(actual, expected, "Expected 'Error: Invalid hostname'")
   
-    #def test_port_scanner_invalid_ip_address(self):
-        #err = port_scanner.get_open_ports("266.255.9.10", [22, 42], False)
-        #actual = err
-        #expected = "Error: Invalid IP address"
-        #self.assertEqual(actual, expected, "Expected 'Error: Invalid IP address'")
+    def test_port_scanner_invalid_ip_address(self):
+        err = port_scanner.get_open_ports("266.255.9.10", [22, 42], False)
+        actual = err
+        expected = "Error: Invalid IP address"
+        self.assertEqual(actual, expected, "Expected 'Error: Invalid IP address'")
 
 if __name__ == "__main__":
     unittest.main()
